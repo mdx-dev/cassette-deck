@@ -23,8 +23,15 @@ describe CassetteDeck::Play do
       let(:path) { '/test.json?n=1' }
 
       it 'should play the recorded cassette' do
-        expect(subject.status).to eq(200)
         expect(JSON.parse(subject.body)).to have_key('success')
+      end
+
+      it 'should have a status code' do
+        expect(subject.status).to eq(200)
+      end
+
+      it 'should have response headers' do
+        expect(subject.headers).to include('Content-Length')
       end
 
     end
