@@ -33,7 +33,7 @@ module CassetteDeck
         if recordings.has_interaction_matching?(vcr_request)
           response = recordings.response_for(vcr_request)
 
-          [response.status.code, {}, [response.body]]
+          [response.status.code, response.headers, [response.body]]
         else
           @app.call(env)
         end
